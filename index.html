@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- ブラウザ版ひとふで相撲（Flutter の web のひな形。tools/web/README.md）。
+     Flutter の画面は body の中に作られる。読み込みの間は #splash の幕を見せ、最初のフレームのあと lib/web/web_host.dart の hideSplash が下ろす -->
+<html lang="ja">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <!-- Flutter は起動のときにこの meta を自分の値に置き換えるので、同じ値にしておく（幕とゲームで表示の範囲が変わらないように。viewport-fit は効かない） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ひとふで相撲</title>
+  <meta name="description" content="一筆の落書きが、力士になる。描いた線がそのまま力士になる紙相撲の物理対戦ゲーム。ブラウザでそのまま遊べます（無料・広告なし）。">
+  <!-- リンクカード（X・LINE などに URL を貼ったときの見出し・説明・絵）。URL は公開の場所の絶対 URL。
+       絵は tools/web/make_og.py が作る（変えたら番号を上げる。同じ名前だと古い絵が出続ける） -->
+  <link rel="canonical" href="https://hitofudesumo.kumao.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ひとふで相撲">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:url" content="https://hitofudesumo.kumao.app/">
+  <meta property="og:title" content="ひとふで相撲（ブラウザで遊べる）">
+  <meta property="og:description" content="一筆の落書きが、力士になる。描いた線がそのまま力士になる紙相撲の物理対戦ゲーム。ブラウザでそのまま遊べます（無料・広告なし）。">
+  <meta property="og:image" content="https://hitofudesumo.kumao.app/og/hitofudesumo-og-1.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ひとふで相撲の題字と、落書きの力士どうしの取組">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- ホーム画面に置いたとき -->
+  <meta name="theme-color" content="#f6efdf">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ひとふで相撲">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <style>
+    /* 字の大きさは端末やブラウザの設定で変えない（Flutter は html の字の大きさから倍率を決める。箱からはみ出さないように） */
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    html, body { margin: 0; height: 100%; background: #f6efdf; overscroll-behavior: none;
+      -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    /* 四股名の入力欄（Flutter の隠れた input）は打てるように。親の none を受け継ぐと iPhone の Safari で字が入らないことがある */
+    input, textarea { -webkit-user-select: text; user-select: text; }
+    #splash { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+      background: #f6efdf;
+      font: 700 15px/1.6 "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; color: #2b2520; text-align: center;
+      transition: opacity .4s cubic-bezier(.2, .8, .2, 1); }
+    #splash.done { opacity: 0; pointer-events: none; }
+    #splash img { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 6px 18px rgba(43, 37, 32, .25); animation: bob 1.2s ease-in-out infinite alternate; }
+    @keyframes bob { from { transform: translateY(-5px) scale(.98); } to { transform: translateY(5px) scale(1.02); } }
+    #splash p { margin: 0; padding: 0 24px; white-space: pre-line; }
+  </style>
+  <script>
+    // 描く細かさ。Android は dpr 2.6〜3.5 の端末が多く、そのままだと描く高さが 2400px を超えて重いので 1600px ほどまでにする（くもぽんと同じ考え。
+    // Flutter はここを見て描く大きさを決める）。?dpr=1.5 で試せる（下げるだけ）。iPhone とパソコンはそのまま
+    (function () {
+      var real = window.devicePixelRatio || 1;
+      var want = real;
+      var asked = parseFloat(new URLSearchParams(location.search).get('dpr'));
+      if (asked > 0) {
+        want = Math.min(asked, real);
+      } else if (/Android/.test(navigator.userAgent)) {
+        want = Math.min(real, Math.max(1600 / Math.max(screen.width, screen.height), 1.5));
+      }
+      if (want !== real) {
+        Object.defineProperty(window, 'devicePixelRatio', { get: function () { return want; }, configurable: true });
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="splash">
+    <img src="icons/icon-192.png" alt="" width="112" height="112">
+    <p id="splash-text">読み込み中…</p>
+  </div>
+  <script>
+    // 組みの印（公開の形では tools/web/stage.py が書く。プログラムは v/<印>/ の箱に入る）
+    window.HITOFUDE_BUILD = '7950bd887dec';
+    (function () {
+      var text = document.getElementById('splash-text');
+      // 読み込めないまま止まったときに、何が起きているかを伝える（幕が下りれば要素ごと消える）
+      var slow = setTimeout(function () {
+        text.textContent = 'まだ読み込んでいます…\n止まっているときは、開き直してください。';
+      }, 30000);
+      window.hitofudeLoadFailed = function () {
+        clearTimeout(slow);
+        text.textContent = '読み込めませんでした。\n通信を確かめて、開き直してください。';
+      };
+    })();
+    // ホーム画面に置ける形: 通信がなくても遊べるように、ファイルを手元に置く（sw.js）。
+    // ゲームが出てから頼む（lib/web/web_host.dart の hideSplash。読み込みと同時に置き始めると、初めての人の通信を奪い合う）
+    window.hitofudeRegisterWorker = function () {
+      if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        navigator.serviceWorker.register('sw.js').catch(function (e) { console.warn('[sw]', e); });
+      }
+    };
+  </script>
+  <script src="v/7950bd887dec/flutter_bootstrap.js" async></script>
+</body>
+</html>
