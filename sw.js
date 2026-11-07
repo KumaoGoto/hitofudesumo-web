@@ -3,7 +3,7 @@
 // 新しい置き場を作って古い置き場を捨てる。中身の変わっていないファイルは古い置き場から移す（更新のたびに全部を取り直さない）。
 // 公開の形（tools/web/stage.py）では、プログラムは版ごとの箱 v/<VERSION>/ に入り、PRECACHE もその場所に書き換わる。
 
-const VERSION = 'a61bcd9a47ae';
+const VERSION = 'a1f8c2f6a9d8';
 const PRECACHE = {
   'assets/AssetManifest.bin': 'ba60621882358037',
   'assets/AssetManifest.bin.json': 'eb5553aeb095e649',
@@ -44,19 +44,19 @@ const PRECACHE = {
   'assets/assets/kimarite/yoritaoshi.jpg': '062163a51663bd51',
   'assets/fonts/MaterialIcons-Regular.otf': 'b8fda7fd4f7401d6',
   'assets/packages/cupertino_icons/assets/CupertinoIcons.ttf': '3d90c370aa4cf00d',
-  'v/a61bcd9a47ae/assets/packages/forge2d/lib/src/backend/wasm/box2d.wasm': '33cfc1f30ef9aa3e',
+  'v/a1f8c2f6a9d8/assets/packages/forge2d/lib/src/backend/wasm/box2d.wasm': '33cfc1f30ef9aa3e',
   'assets/shaders/ink_sparkle.frag': '2dca5ab93d4ec29e',
   'assets/shaders/stretch_effect.frag': 'ab412f07a5b9b50b',
-  'v/a61bcd9a47ae/canvaskit/canvaskit.js': '7361b744487f9826',
-  'v/a61bcd9a47ae/canvaskit/canvaskit.wasm': '6bdfaa51c76845c0',
-  'v/a61bcd9a47ae/flutter_bootstrap.js': '96fe6b4df16f4579',
+  'v/a1f8c2f6a9d8/canvaskit/canvaskit.js': '7361b744487f9826',
+  'v/a1f8c2f6a9d8/canvaskit/canvaskit.wasm': '6bdfaa51c76845c0',
+  'v/a1f8c2f6a9d8/flutter_bootstrap.js': '96fe6b4df16f4579',
   'icons/apple-touch-icon.png': '2eb8cb3a30175557',
   'icons/favicon-32.png': 'd5043d4d3c6e1ea5',
   'icons/icon-192.png': '8ce3572059044ded',
   'icons/icon-512.png': 'd906c3407cfba853',
   'icons/icon-maskable-512.png': '6aa2f53178d260bd',
-  'index.html': 'a61bcd9a47ae',
-  'v/a61bcd9a47ae/main.dart.js': '6dd5d5f35b394d5d',
+  'index.html': 'a1f8c2f6a9d8',
+  'v/a1f8c2f6a9d8/main.dart.js': '618117ce74b0323c',
   'manifest.webmanifest': 'ed06b9f5c5e57911',
 };
 // @@PRECACHE_END
