@@ -3,7 +3,7 @@
 // 新しい置き場を作って古い置き場を捨てる。中身の変わっていないファイルは古い置き場から移す（更新のたびに全部を取り直さない）。
 // 公開の形（tools/web/stage.py）では、プログラムは版ごとの箱 v/<VERSION>/ に入り、PRECACHE もその場所に書き換わる。
 
-const VERSION = '300fc0401637';
+const VERSION = '3c2ef65851c7';
 const PRECACHE = {
   'assets/AssetManifest.bin': 'ac37296ceb0074d7',
   'assets/AssetManifest.bin.json': '099e5f99d7282c25',
@@ -25,12 +25,12 @@ const PRECACHE = {
   'assets/assets/audio/pull.wav': 'fcf8855252cb9205',
   'assets/assets/audio/ton.wav': '38a4ee8e2f4b42fd',
   'assets/assets/audio/ton2.wav': 'cfb99ec7c1c211a1',
-  'assets/assets/fonts/DelaGothicOne-Regular.ttf': 'd08fbd08f38f886e',
-  'assets/assets/fonts/MPLUSRounded1c-Black.ttf': '84d8449251093e8d',
-  'assets/assets/fonts/MPLUSRounded1c-Bold.ttf': '9ab5c470c929b6c4',
+  'assets/assets/fonts/DelaGothicOne-Regular.ttf': '85026769c086fd44',
+  'assets/assets/fonts/MPLUSRounded1c-Black.ttf': '8b00e4f0b5b952ba',
+  'assets/assets/fonts/MPLUSRounded1c-Bold.ttf': '0bfdad4d7e51ef62',
   'assets/assets/fonts/MPLUSRounded1c-Regular.ttf': '3b5654ca791fa3fd',
-  'assets/assets/fonts/YujiBoku-Regular.ttf': 'c0d277c7578313ee',
-  'assets/assets/fonts/YujiBokuKanji.ttf': '6937c6e717754370',
+  'assets/assets/fonts/YujiBoku-Regular.ttf': '3376b8d0ea53f4ef',
+  'assets/assets/fonts/YujiBokuKanji.ttf': 'd324ee7b0748e6a1',
   'assets/assets/kimarite/abisetaoshi.jpg': '957fb6db5480b40b',
   'assets/assets/kimarite/fumidashi.jpg': '698ade8b4ae646db',
   'assets/assets/kimarite/hatakikomi.jpg': 'bfe401162a2342aa',
@@ -47,21 +47,21 @@ const PRECACHE = {
   'assets/assets/kimarite/utchari.jpg': '496bc1c9be4893ed',
   'assets/assets/kimarite/yorikiri.jpg': '743491a0bd94f2eb',
   'assets/assets/kimarite/yoritaoshi.jpg': '062163a51663bd51',
-  'assets/fonts/MaterialIcons-Regular.otf': 'c2bc56808fcba831',
+  'assets/fonts/MaterialIcons-Regular.otf': '93d804115ad9fc92',
   'assets/packages/cupertino_icons/assets/CupertinoIcons.ttf': '3d90c370aa4cf00d',
-  'v/300fc0401637/assets/packages/forge2d/lib/src/backend/wasm/box2d.wasm': '33cfc1f30ef9aa3e',
+  'v/3c2ef65851c7/assets/packages/forge2d/lib/src/backend/wasm/box2d.wasm': '33cfc1f30ef9aa3e',
   'assets/shaders/ink_sparkle.frag': '2dca5ab93d4ec29e',
   'assets/shaders/stretch_effect.frag': 'ab412f07a5b9b50b',
-  'v/300fc0401637/canvaskit/canvaskit.js': '7361b744487f9826',
-  'v/300fc0401637/canvaskit/canvaskit.wasm': '6bdfaa51c76845c0',
-  'v/300fc0401637/flutter_bootstrap.js': '96fe6b4df16f4579',
+  'v/3c2ef65851c7/canvaskit/canvaskit.js': '7361b744487f9826',
+  'v/3c2ef65851c7/canvaskit/canvaskit.wasm': '6bdfaa51c76845c0',
+  'v/3c2ef65851c7/flutter_bootstrap.js': '96fe6b4df16f4579',
   'icons/apple-touch-icon.png': '2eb8cb3a30175557',
   'icons/favicon-32.png': 'd5043d4d3c6e1ea5',
   'icons/icon-192.png': '8ce3572059044ded',
   'icons/icon-512.png': 'd906c3407cfba853',
   'icons/icon-maskable-512.png': '6aa2f53178d260bd',
-  'index.html': '300fc0401637',
-  'v/300fc0401637/main.dart.js': '4a3647db3a447720',
+  'index.html': '3c2ef65851c7',
+  'v/3c2ef65851c7/main.dart.js': '9e1df4da40358334',
   'manifest.webmanifest': 'ed06b9f5c5e57911',
 };
 // @@PRECACHE_END
